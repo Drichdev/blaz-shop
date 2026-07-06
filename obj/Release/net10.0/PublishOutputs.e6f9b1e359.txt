@@ -1,0 +1,5 @@
+/Users/macbook/Documents/Projets/Net/BlazorApp/bin/Release/net10.0/publish/appsettings.Development.json
+/Users/macbook/Documents/Projets/Net/BlazorApp/bin/Release/net10.0/publish/appsettings.json
+/Users/macbook/Documents/Projets/Net/BlazorApp/bin/Release/net10.0/publish/BlazorApp.runtimeconfig.json
+/Users/macbook/Documents/Projets/Net/BlazorApp/bin/Release/net10.0/publish/dotnet.js
+/Users/macbook/Documents/Projets/Net/BlazorApp/bin/Release/net10.0/publish/web.config
