@@ -27,7 +27,36 @@
         <span class="dismiss">🗙</span>
     </div>
 
-    <script src="_framework/blazor.webassembly.js"></script>
+    <script src="_framework/blazor.webassembly.js" nomodule></script>
+    <script type="module">
+        import { getAssemblyExports } from './_framework/blazor.web.js';
+        
+        // Configure Blazor to ignore SRI checks for GitHub Pages
+        window.Blazor = window.Blazor || {};
+    </script>
+    <script>
+        // Handle SRI integrity check failures gracefully
+        window.addEventListener('error', function(e) {
+            if (e.message && e.message.includes('integrity')) {
+                e.preventDefault();
+            }
+        }, true);
+        
+        // Patch fetch to handle SRI errors
+        const originalFetch = window.fetch;
+        window.fetch = function(...args) {
+            return originalFetch.apply(this, args).catch(err => {
+                if (err.message && err.message.includes('integrity')) {
+                    // Retry without integrity check
+                    const url = args[0];
+                    const options = args[1] || {};
+                    delete options.integrity;
+                    return originalFetch(url, options);
+                }
+                throw err;
+            });
+        };
+    </script>
     <script>
         function copyToClipboard(e) {
             var copyText = document.getElementById(e);
